@@ -11,15 +11,13 @@ public class Animals {
     private String breed;
     private LocalDateTime createdAt;
     private int id;
-    private static ArrayList<Animals> adoptables = new ArrayList<>();
 
-    public Animals(String Animal, String gender, String type, String breed){
-        this.animalName = Animal;
+    public Animals(String animalName, String gender, String type, String breed){
+        this.animalName = animalName;
         this.gender = gender;
         this.type = type;
         this.breed = breed;
         this.createdAt = LocalDateTime.now();
-        adoptables.add(this);
     }
 
     public String getAnimalName() {

@@ -12,5 +12,10 @@ public interface AnimalsDao {
 
     Animals findById(int id);
 
+    void update(String newAnimalName, String newGender, String newType, String newBreed, int id);
+
+    void deleteById(int id);
+
+    void clearAllAnimals();
 
 }

@@ -29,26 +29,58 @@ public class Sql2oAnimalsDaoTest {
     }
     @Test
     public void addingAnimalstoDatabasebyId() throws Exception {
-        Animals animals = new Animals ("Bob", "male", "dinosaur","unicorn");
+        Animals animals = setupNew();
         int originalTaskId = animals.getId();
         animalsDao.add(animals);
         assertNotEquals(originalTaskId, animals.getId()); //how does this work?
     }
     @Test
     public void existingAnimalCanBeFoundById() throws Exception {
-        Animals animals = new Animals ("Bob", "male", "dinosaur","unicorn");
+        Animals animals = setupNew();
         animalsDao.add(animals); //add to dao (takes care of saving)
         Animals foundTask = animalsDao.findById(animals.getId()); //retrieve
         assertEquals(animals, foundTask); //should be the same
     }
     @Test
     public void getlistofAllAnimals() throws Exception {
-        Animals animals = new Animals ("Bob", "male", "dinosaur","unicorn");
+        Animals animals = setupNew();
         animalsDao.add(animals); //add to dao (takes care of saving)
-        assertEquals(0, animalsDao.getAll().size());
+        assertEquals(1, animalsDao.getAll().size());
     }
     @Test
     public void noAnimalsListedIfEmpty() throws Exception {
         assertEquals(0, animalsDao.getAll().size());
+    }
+
+    @Test
+    public void updateAnimalInformation() throws Exception {
+        String initialDescription = "";
+        Animals animals = setupNew();
+        animalsDao.add(animals);
+        animalsDao.update( "Bobbette", "none", "narwhal", "walrus", animals.getId());
+        Animals updatedAnimal = animalsDao.findById(animals.getId()); //why do I need to refind this?
+        assertNotEquals(initialDescription, updatedAnimal.getGender());
+    }
+
+    @Test
+    public void deleteByIdDeletesCorrectAnimal() throws Exception {
+        Animals animals = setupNew();
+        animalsDao.add(animals);
+        animalsDao.deleteById(animals.getId());
+        assertEquals(0, animalsDao.getAll().size());
+    }
+    @Test
+    public void clearAllClearsAll() throws Exception {
+        Animals animals = setupNew();
+        Animals otherAnimal = new Animals("Bobette","none","narwhal","walrus");
+        animalsDao.add(animals);
+        animalsDao.add(otherAnimal);
+        int daoSize = animalsDao.getAll().size();
+        animalsDao.clearAllAnimals();
+        assertTrue(daoSize > 0 && daoSize > animalsDao.getAll().size()); //this is a little overcomplicated, but illustrates well how we might use `assertTrue` in a different way.
+    }
+
+    public Animals setupNew(){
+        return  new Animals ("Bob", "male", "dinosaur","unicorn");
     }
 }
