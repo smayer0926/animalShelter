@@ -65,6 +65,16 @@ public class Sql2oOwnerDaoTest {
         List<Owner> search = ownerDao.sortByBreed();
         assertEquals("golden", search.get(0).getBreed());
     }
+    @Test
+    public void findByBreed() throws Exception {
+        Owner owner = setupNew();
+        Owner otherOwner = setupOther();
+        ownerDao.add(owner);
+        ownerDao.add(otherOwner);
+        List<Owner> search = ownerDao.findByBreed("golden");
+        assertEquals(1, search.size());
+        assertEquals("golden", search.get(0).getBreed());
+    }
 
     public Owner setupNew(){
         return new Owner("Rich", "dinosaur","golden", "555-555-5555");

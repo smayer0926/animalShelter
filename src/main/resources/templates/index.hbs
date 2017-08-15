@@ -1,0 +1,29 @@
+
+{{#partial "content"}}
+
+
+    {{#if animals}}
+        <h1>List of Animals</h1>
+        <ul>
+            {{#each animals}}
+                <li>{{animalName}}  <a href="/animals/{{id}}"><span class="glyphicon glyphicon-plus" aria-hidden="true">Add Animal</span></a></li>
+            {{/each}}
+        </ul>
+    {{else}}
+        <p>No Animals ready to adopt!</p>
+    {{/if}}
+    {{#if owners}}
+        <h1>List of Owners</h1>
+        <ul>
+            {{#each owners}}
+                <li>{{name}}  <a href="/owners/{{id}}"><span class="glyphicon glyphicon-plus" aria-hidden="true">Add Animal</span></a></li>
+            {{/each}}
+        </ul>
+    {{else}}
+        <p>No Potential Adopters!</p>
+    {{/if}}
+
+
+{{/partial}}
+
+{{> layout.hbs}}

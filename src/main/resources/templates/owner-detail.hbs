@@ -1,0 +1,15 @@
+{{#partial "content"}}
+    {{#if newOwner}}
+        <p>{{newOwner.name}}</p>
+        <ul>
+            <li>Phone:<br> {{newOwner.phone}}</li><br><br>
+            <li>Animal Type:<br> {{newOwner.type}}</li><br><br>
+            <li>Animal breed:<br> {{newOwner.breed}}</li><br><br>
+        </ul>
+    {{else}}
+        <p>No Potential adopters to display!</p>
+    {{/if}}
+
+{{/partial}}
+
+{{> layout.hbs}}

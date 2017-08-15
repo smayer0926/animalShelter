@@ -1,0 +1,34 @@
+{{#partial "content"}}
+    {{#if newAnimal}}
+        <p>{{newAnimal.animalName}}  <a href="/animals/{{newAnimal.id}}/update"><span class="glyphicon glyphicon-pencil" aria-hidden="true">edit Animal</span></a></p>
+        <ul>
+            <li>Gender:<br> {{newAnimal.gender}}</li><br><br>
+            <li>Animal Type:<br> {{newAnimal.type}}</li><br><br>
+            <li>Animal breed:<br> {{newAnimal.breed}}</li><br><br>
+
+
+            <!--<li>Team members:<li>-->
+            <!--<ul>-->
+                <!--{{#if newMembers}}-->
+                    <!--{{#each newMembers}}-->
+                        <!--<li>{{this}}</li>-->
+                    <!--{{/each}}-->
+                <!--{{else}}-->
+                    <!--<p>There are no member's currently listed.</p>-->
+                <!--{{/if}}-->
+            <!--</ul>-->
+        </ul>
+    {{else}}
+        <p>No Pets to display!</p>
+    {{/if}}
+
+    <!--<form action="/teams/{{newTeam.id}}" method="post">-->
+        <!--<div class="form-group">-->
+            <!--<label for="newTeamMate">Add a new teammate:</label>-->
+            <!--<input id="newTeamMate" name="newTeamMate" class="form-control" type="text">-->
+            <!--<button type="submit" class="btn btn-success">Add a new team member</button>-->
+        <!--</div>-->
+    <!--</form>-->
+{{/partial}}
+
+{{> layout.hbs}}

@@ -1,0 +1,43 @@
+{{#block "header"}}
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport"
+              content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+       <title></title>
+        <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css'>
+        <link rel="stylesheet" href="/css/main.css">
+        <link href="https://fonts.googleapis.com/css?family=Oswald|Quattrocento+Sans" rel="stylesheet">
+
+    </head>
+    <body>
+    <ul class="nav nav-tabs">
+        <li role="presentation"><a href="/" class="active">See All Animals & Owners</a></li>
+        <li role="presentation"><a href="/animals/new">Add Animal</a></li>
+        <li role="presentation"><a href="/owners/new">Add Owner</a></li>
+    </ul>
+{{/block}}
+        <div class="container">
+            <div class="page-header">
+            <h1>Welcome to the best pet shelter! <br></h1>
+            </div>
+
+             <div class="col-md-12 jumbotron flex">
+
+            {{#block "content"}}
+
+            {{/block}}
+             </div>
+        </div>
+{{#block "footer"}}
+    <footer class="footer">
+        <div class="col-md-12">
+            <p>Photo by Upsplash</p>
+        </div>
+    </footer>
+
+    </body>
+    </html>
+{{/block}}

@@ -17,4 +17,6 @@ public interface OwnerDao {
 
     List<Owner> sortByBreed();
 
+    List<Owner> findByBreed(String breed);
+
 }

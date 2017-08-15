@@ -1,0 +1,28 @@
+{{#partial "content"}}
+
+
+    <h1>Add a new Owner!</h1>
+
+    <form action="/owners/new" method="post">
+        <div class="form-group">
+            <label for="name">Owner Name:</label>
+            <input id="name" name="name" class="form-control" type="text" required>
+        </div>
+        <div class="form-group">
+            <label for="phone">Owner Phone Number:</label>
+            <input id="phone" name="phone" class="form-control" type="text" required>
+        </div>
+        <div class="form-group">
+            <label for="type">Animal Type:</label>
+            <input id="type" name="type" class="form-control" type="text" required>
+        </div>
+        <div class="form-group">
+            <label for="breed">Breed:</label>
+            <input id="breed" name="breed" class="form-control" type="text" required>
+        </div>
+        <button type="submit" class="btn btn-success">Submit Owner!</button>
+    </form>
+
+{{/partial}}
+
+{{> layout.hbs}}

@@ -50,4 +50,14 @@ public class Sql2oOwnerDao implements OwnerDao {
                     .executeAndFetch(Owner.class); //fetch a list
         }
     }
+    @Override
+    public List<Owner> findByBreed(String breed) {
+        String sql = "SELECT * FROM owner WHERE breed = :breed";
+        try(Connection con = sql2o.open()){
+            return con.createQuery(sql)
+                    .addParameter("breed", breed) //key/value pair, key must match above
+                    .executeAndFetch(Owner.class); //fetch an individual item
+
+    }
+    }
 }
