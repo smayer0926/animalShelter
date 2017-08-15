@@ -7,3 +7,11 @@ CREATE TABLE IF NOT EXISTS animals (
   type VARCHAR,
   breed VARCHAR
 );
+
+CREATE TABLE IF NOT EXISTS owner (
+  id int PRIMARY KEY auto_increment,
+  name VARCHAR,
+  type VARCHAR,
+  breed VARCHAR,
+  phone VARCHAR
+);

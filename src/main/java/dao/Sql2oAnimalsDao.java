@@ -79,32 +79,29 @@ public class Sql2oAnimalsDao implements AnimalsDao{
             System.out.println(ex);
         }
     }
+
     @Override
-    public List<Animals> findByBreed(String breed) {
-        String sql = "SELECT * FROM animals WHERE breed = :breed";
+    public List<Animals> sortByType() {
+        String sql = "SELECT * FROM animals ORDER BY type";
         try(Connection con = sql2o.open()){
             return con.createQuery(sql)
-                    .addParameter("breed", breed) //key/value pair, key must match above
+                    .executeAndFetch(Animals.class);
+        }
+    }
+    @Override
+    public  List<Animals> sortByName() {
+        String sql = "SELECT * FROM animals ORDER BY animalName";
+        try(Connection con = sql2o.open()){
+            return con.createQuery(sql)
                     .executeAndFetch(Animals.class); //fetch an individual item
         }
     }
     @Override
-    public List<Animals> findByType(String type) {
-        String sql = "SELECT * FROM animals WHERE type = :type";
+    public List<Animals> sortByBreed() {
+        String sql = "SELECT * FROM animals ORDER BY breed";
         try(Connection con = sql2o.open()){
             return con.createQuery(sql)
-                    .addParameter("type", type) //key/value pair, key must match above
                     .executeAndFetch(Animals.class); //fetch an individual item
-        }
-    }
-    @Override
-    public List<Animals> findByName(String name) {
-        String sql = "SELECT * FROM animals WHERE name = :name";
-        try(Connection con = sql2o.open()){
-            List<Animals> empty = con.createQuery(sql)
-                    .addParameter("name", name) //key/value pair, key must match above
-                    .executeAndFetch(Animals.class); //fetch an individual item
-            return Collections.sort(empty);
         }
     }
 }

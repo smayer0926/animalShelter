@@ -18,10 +18,9 @@ public interface AnimalsDao {
 
     void clearAllAnimals();
 
-    List<Animals> findByBreed(String breed);
+    List<Animals> sortByBreed();
 
-    List<Animals> findByType(String type);
+    List<Animals> sortByType();
 
-    List<Animals> findByName(String name);
-
+    List<Animals> sortByName();
 }

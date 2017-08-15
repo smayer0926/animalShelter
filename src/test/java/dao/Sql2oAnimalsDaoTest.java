@@ -6,7 +6,6 @@ import org.junit.Before;
 import org.junit.Test;
 import org.sql2o.Connection;
 import org.sql2o.Sql2o;
-import shelter.Animals;
 
 import java.util.List;
 
@@ -32,19 +31,19 @@ public class Sql2oAnimalsDaoTest {
     @Test
     public void addingAnimalstoDatabasebyId() throws Exception {
         Animals animals = setupNew();
-        int originalTaskId = animals.getId();
+        int originalAnimalId = animals.getId();
         animalsDao.add(animals);
-        assertNotEquals(originalTaskId, animals.getId()); //how does this work?
+        assertNotEquals(originalAnimalId, animals.getId()); //how does this work?
     }
     @Test
     public void existingAnimalCanBeFoundById() throws Exception {
         Animals animals = setupNew();
         animalsDao.add(animals); //add to dao (takes care of saving)
-        Animals foundTask = animalsDao.findById(animals.getId()); //retrieve
-        System.out.println(foundTask);
+        Animals foundAnimal = animalsDao.findById(animals.getId()); //retrieve
+        System.out.println(foundAnimal);
         System.out.println(animals);
 
-        assertEquals(animals, foundTask); //should be the same
+        assertEquals(animals, foundAnimal); //should be the same
     }
     @Test
     public void getlistofAllAnimals() throws Exception {
@@ -85,24 +84,31 @@ public class Sql2oAnimalsDaoTest {
         assertTrue(daoSize > 0 && daoSize > animalsDao.getAll().size()); //this is a little overcomplicated, but illustrates well how we might use `assertTrue` in a different way.
     }
     @Test
-    public void findByBreed() throws Exception {
+    public void sortByBreed() throws Exception {
         Animals animals = setupNew();
         Animals otherAnimal = setupOther();
         animalsDao.add(animals);
         animalsDao.add(otherAnimal);
-        List<Animals> search = animalsDao.findByBreed("unicorn");
-        assertEquals(1, search.size());
+        List<Animals> search = animalsDao.sortByBreed();
         assertEquals("unicorn", search.get(0).getBreed());
     }
     @Test
-    public void findByType() throws Exception {
+    public void sortByType() throws Exception {
         Animals animals = setupNew();
         Animals otherAnimal = setupOther();
         animalsDao.add(animals);
         animalsDao.add(otherAnimal);
-        List<Animals> search = animalsDao.findByType("dinosaur");
-        assertEquals(1, search.size());
+        List<Animals> search = animalsDao.sortByType();
         assertEquals("dinosaur", search.get(0).getType());
+    }
+    @Test
+    public void listByAnimalName() throws Exception {
+        Animals animals = setupNew();
+        Animals otherAnimal = setupOther();
+        animalsDao.add(otherAnimal);
+        animalsDao.add(animals); //add to dao (takes care of saving)
+        List<Animals> search  = animalsDao.sortByName();
+        assertEquals("Bob", search.get(0).getAnimalName());
     }
 
 
