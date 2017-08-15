@@ -10,6 +10,7 @@ public class Animals {
     private String type;
     private String breed;
     private LocalDateTime createdAt;
+    private int id;
     private static ArrayList<Animals> adoptables = new ArrayList<>();
 
     public Animals(String Animal, String gender, String type, String breed){
@@ -19,5 +20,75 @@ public class Animals {
         this.breed = breed;
         this.createdAt = LocalDateTime.now();
         adoptables.add(this);
+    }
+
+    public String getAnimalName() {
+        return animalName;
+    }
+
+    public void setAnimalName(String animalName) {
+        this.animalName = animalName;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getBreed() {
+        return breed;
+    }
+
+    public void setBreed(String breed) {
+        this.breed = breed;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Animals animals = (Animals) o;
+
+        if (!animalName.equals(animals.animalName)) return false;
+        if (!gender.equals(animals.gender)) return false;
+        if (!type.equals(animals.type)) return false;
+        return breed.equals(animals.breed);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = animalName.hashCode();
+        result = 31 * result + gender.hashCode();
+        result = 31 * result + type.hashCode();
+        result = 31 * result + breed.hashCode();
+        return result;
     }
 }
