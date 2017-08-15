@@ -41,6 +41,9 @@ public class Sql2oAnimalsDaoTest {
         Animals animals = setupNew();
         animalsDao.add(animals); //add to dao (takes care of saving)
         Animals foundTask = animalsDao.findById(animals.getId()); //retrieve
+        System.out.println(foundTask);
+        System.out.println(animals);
+
         assertEquals(animals, foundTask); //should be the same
     }
     @Test
@@ -91,6 +94,17 @@ public class Sql2oAnimalsDaoTest {
         assertEquals(1, search.size());
         assertEquals("unicorn", search.get(0).getBreed());
     }
+    @Test
+    public void findByType() throws Exception {
+        Animals animals = setupNew();
+        Animals otherAnimal = setupOther();
+        animalsDao.add(animals);
+        animalsDao.add(otherAnimal);
+        List<Animals> search = animalsDao.findByType("dinosaur");
+        assertEquals(1, search.size());
+        assertEquals("dinosaur", search.get(0).getType());
+    }
+
 
     public Animals setupNew(){
         return  new Animals ("Bob", "male", "dinosaur","unicorn");

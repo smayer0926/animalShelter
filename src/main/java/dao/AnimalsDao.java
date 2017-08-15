@@ -20,8 +20,8 @@ public interface AnimalsDao {
 
     List<Animals> findByBreed(String breed);
 
-//    List<Animals> findByType(String type);
-//
-//    List<Animals> findByName(String name);
+    List<Animals> findByType(String type);
+
+    List<Animals> findByName(String name);
 
 }
