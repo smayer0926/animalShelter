@@ -77,5 +77,13 @@ public class Sql2oAnimalsDao implements AnimalsDao{
             System.out.println(ex);
         }
     }
-
+    @Override
+    public List<Animals> findByBreed(String breed) {
+        String sql = "SELECT * FROM animals WHERE breed = :breed";
+        try(Connection con = sql2o.open()){
+            return con.createQuery(sql)
+                    .addParameter("breed", breed) //key/value pair, key must match above
+                    .executeAndFetch(Animals.class); //fetch an individual item
+        }
+    }
 }

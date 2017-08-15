@@ -8,6 +8,8 @@ import org.sql2o.Connection;
 import org.sql2o.Sql2o;
 import shelter.Animals;
 
+import java.util.List;
+
 import static org.junit.Assert.*;
 
 public class Sql2oAnimalsDaoTest {
@@ -72,15 +74,29 @@ public class Sql2oAnimalsDaoTest {
     @Test
     public void clearAllClearsAll() throws Exception {
         Animals animals = setupNew();
-        Animals otherAnimal = new Animals("Bobette","none","narwhal","walrus");
+        Animals otherAnimal = setupOther();
         animalsDao.add(animals);
         animalsDao.add(otherAnimal);
         int daoSize = animalsDao.getAll().size();
         animalsDao.clearAllAnimals();
         assertTrue(daoSize > 0 && daoSize > animalsDao.getAll().size()); //this is a little overcomplicated, but illustrates well how we might use `assertTrue` in a different way.
     }
+    @Test
+    public void findByBreed() throws Exception {
+        Animals animals = setupNew();
+        Animals otherAnimal = setupOther();
+        animalsDao.add(animals);
+        animalsDao.add(otherAnimal);
+        List<Animals> search = animalsDao.findByBreed("unicorn");
+        assertEquals(1, search.size());
+        assertEquals("unicorn", search.get(0).getBreed());
+    }
 
     public Animals setupNew(){
         return  new Animals ("Bob", "male", "dinosaur","unicorn");
     }
+    public Animals setupOther(){
+        return  new Animals ("Bobette","none","narwhal","walrus");
+    }
+
 }
